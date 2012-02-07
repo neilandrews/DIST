@@ -13,17 +13,17 @@ namespace DIST.Extensions
 
             //bin = bin.PadLeft(8, '0');
 
-            byte a = colour.A;
-            string a1 = Convert.ToString(a, 2).PadLeft(8, '0');
+            var a = colour.A;
+            var a1 = Convert.ToString(a, 2).PadLeft(8, '0');
 
-            byte r = colour.R;
-            string r1 = Convert.ToString(r, 2).PadLeft(8, '0');
+            var r = colour.R;
+            var r1 = Convert.ToString(r, 2).PadLeft(8, '0');
 
-            byte g = colour.G;
-            string g1 = Convert.ToString(g, 2).PadLeft(8, '0');
+            var g = colour.G;
+            var g1 = Convert.ToString(g, 2).PadLeft(8, '0');
 
-            byte b = colour.B;
-            string b1 = Convert.ToString(b, 2).PadLeft(8, '0');
+            var b = colour.B;
+            var b1 = Convert.ToString(b, 2).PadLeft(8, '0');
 
             return a1 + r1 + g1 + b1;
         }
