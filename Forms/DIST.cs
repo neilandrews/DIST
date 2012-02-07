@@ -117,7 +117,9 @@ namespace DIST.Forms
             if (encoding_pictureBox_mainImage != null)
             {
                 var dist = new BaseAlgorithm();
-                dist.Extract(decoding_textBox_imagePath.Text);
+                var extractedText = dist.Extract(decoding_textBox_imagePath.Text);
+
+                decoding_textBox_secretMessage.Text = extractedText;
             }
         }
 
