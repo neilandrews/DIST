@@ -43,14 +43,14 @@ namespace DIST.Algorithms
         {
             //make copy of original - perfrom steg on new copy of image
             var savePath = Directory.GetCurrentDirectory();
+            var savePath1 = savePath.Substring(0, savePath.Length - 9) + "Uploads\\NSTEG" + Utilities.Utilities.GetTimeStamp() + ".jpg";
+            var savePath2 = savePath.Substring(0, savePath.Length - 9) + "Uploads\\STEG" + Utilities.Utilities.GetTimeStamp() + ".jpg";
 
-            //TODO change below line - specifically substring part, and possibly change timestamp format 
-            savePath = savePath.Substring(0, savePath.Length - 9) + "Uploads\\STEG" + Utilities.Utilities.GetTimeStamp() + ".jpg";
+            File.Copy(imgPath, savePath1);
 
-            File.Copy(imgPath, savePath);
+            var newImg = new Bitmap(savePath1, false);
 
-            var newImg = new Bitmap(savePath, false);
-
+            var myImage = new Bitmap(newImg);
             var binCount = 0;
             var doBreak = false;
 
@@ -69,11 +69,11 @@ namespace DIST.Algorithms
                     binCount++;
 
                     //get current pixel colour - apply steg rules, get new colour
-                    var curPixelColour = newImg.GetPixel(i, j);
+                    var curPixelColour = myImage.GetPixel(i, j);
                     var newPixelColour = curPixelColour.ToStegColour(currBinChar);
 
                     //Set pixel colour
-                    newImg.SetPixel(i, j, newPixelColour);
+                    myImage.SetPixel(i, j, newPixelColour);
                 }
 
                 if (doBreak)
@@ -81,6 +81,11 @@ namespace DIST.Algorithms
                     break;
                 }
             }
+
+            myImage.Save(savePath2);
+
+
+            File.Delete(savePath1);
         }
 
 
